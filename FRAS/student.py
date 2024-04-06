@@ -29,8 +29,8 @@ class Student:
         self.var_teacher=StringVar()
 
     # This part is image labels setting start 
-        # first header image  
-        img=Image.open(r"Images_GUI\banner.jpg")
+        # first header image
+        img=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/banner.jpg")
         img=img.resize((1366,130),Image.ANTIALIAS)
         self.photoimg=ImageTk.PhotoImage(img)
 
@@ -39,7 +39,7 @@ class Student:
         f_lb1.place(x=0,y=0,width=1366,height=130)
 
          # backgorund image 
-        bg1=Image.open(r"Images_GUI\bg3.jpg")
+        bg1=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/bg3.jpg")
         bg1=bg1.resize((1366,768),Image.ANTIALIAS)
         self.photobg1=ImageTk.PhotoImage(bg1)
 
@@ -321,7 +321,7 @@ class Student:
             messagebox.showerror("Error","Please Fill All Fields are Required!",parent=self.root)
         else:
             try:
-                conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+                conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
                 mycursor = conn.cursor()
                 mycursor.execute("insert into add_student values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(
                 self.var_std_id.get(),
@@ -351,7 +351,7 @@ class Student:
     # ===========================Fetch data form database to table ================================
 
     def fetch_data(self):
-        conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+        conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
         mycursor = conn.cursor()
 
         mycursor.execute("select * from add_student")
@@ -394,7 +394,7 @@ class Student:
             try:
                 Update=messagebox.askyesno("Update","Do you want to Update this Student Details!",parent=self.root)
                 if Update > 0:
-                    conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+                    conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
                     mycursor = conn.cursor()
                     mycursor.execute("update add_student set Name=%s,Department=%s,Course=%s,Year=%s,Semester=%s,Division=%s,Gender=%s,DOB=%s,Mobile_No=%s,Address=%s,Roll_No=%s,Email=%s,Teacher_Name=%s,PhotoSample=%s where Student_ID=%s",( 
                     self.var_std_name.get(),
@@ -431,7 +431,7 @@ class Student:
             try:
                 delete=messagebox.askyesno("Delete","Do you want to Delete?",parent=self.root)
                 if delete>0:
-                    conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+                    conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
                     mycursor = conn.cursor() 
                     sql="delete from add_student where Student_ID=%s"
                     val=(self.var_std_id.get(),)
@@ -471,7 +471,7 @@ class Student:
             messagebox.showerror("Error","Select Combo option and enter entry box",parent=self.root)
         else:
             try:
-                conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+                conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
                 my_cursor = conn.cursor()
                 sql = "SELECT Student_ID,Name,Department,Course,Year,Semester,Division,Gender,DOB,Mobile_No,Address,Roll_No,Email,Teacher_Name,PhotoSample FROM add_student where Roll_No='" +str(self.var_search.get()) + "'" 
                 my_cursor.execute(sql)
@@ -496,7 +496,7 @@ class Student:
             messagebox.showerror("Error","All fields are required",parent=self.s_wind)
         else:
             try:
-                conn=mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+                conn=mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
                 my_cursor=conn.cursor()
                 my_cursor.execute("select * from add_student")
                 myResutl=my_cursor.fetchall()

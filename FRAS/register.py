@@ -23,7 +23,7 @@ class Register:
         self.var_check=IntVar()
         self.var_admin=StringVar()
 
-        self.bg=ImageTk.PhotoImage(file=r"Images_GUI\bgReg.jpg")
+        self.bg=ImageTk.PhotoImage(file=r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/bgReg.jpg")
         
         lb1_bg=Label(self.root,image=self.bg)
         lb1_bg.place(x=0,y=0, relwidth=1,relheight=1)
@@ -144,7 +144,7 @@ class Register:
             else:
                 # messagebox.showinfo("Successfully","Successfully Register!")
                 try:
-                    conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+                    conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
                     mycursor = conn.cursor()
                     query=("select * from regteach where email=%s")
                     value=(self.var_email.get(),)
@@ -154,9 +154,9 @@ class Register:
                         messagebox.showerror("Error","User already exist,please try another email")
                     else:
                         veri=self.var_admin.get()
-                        if veri=="SeAdmin@8989":
+                        if veri=="Admin@8989":
 
-                            mycursor.execute("insert into regteach values(%s,%s,%s,%s,%s,%s,%s)",(
+                            mycursor.execute("insert into regteacher values(%s,%s,%s,%s,%s,%s,%s)",(
                             self.var_fname.get(),
                             self.var_lname.get(),
                             self.var_cnum.get(),

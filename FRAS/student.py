@@ -269,7 +269,7 @@ class Student:
         scroll_y = ttk.Scrollbar(table_frame,orient=VERTICAL)
 
         #create table 
-        self.student_table = ttk.Treeview(table_frame,column=("ID","Name","Dep","Course","Year","Sem","Div","Gender","DOB","Mob-No","Address","Roll-No","Email","Teacher","Photo"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
+        self.student_table = ttk.Treeview(table_frame,column=("ID","Name","Department","Course","Year","Sem","Div","Gender","DOB","Mob-No","Address","Roll-No","Email","Teacher","Photo"),xscrollcommand=scroll_x.set,yscrollcommand=scroll_y.set)
 
         scroll_x.pack(side=BOTTOM,fill=X)
         scroll_y.pack(side=RIGHT,fill=Y)
@@ -278,7 +278,7 @@ class Student:
 
         self.student_table.heading("ID",text="StudentID")
         self.student_table.heading("Name",text="Name")
-        self.student_table.heading("Dep",text="Department")
+        self.student_table.heading("Department",text="Department")
         self.student_table.heading("Course",text="Course")
         self.student_table.heading("Year",text="Year")
         self.student_table.heading("Sem",text="Semester")
@@ -297,7 +297,7 @@ class Student:
         # Set Width of Colums 
         self.student_table.column("ID",width=100)
         self.student_table.column("Name",width=100)
-        self.student_table.column("Dep",width=100)
+        self.student_table.column("Department",width=100)
         self.student_table.column("Course",width=100)
         self.student_table.column("Year",width=100)
         self.student_table.column("Sem",width=100)
@@ -505,22 +505,22 @@ class Student:
                 sname=self.var_std_name.get()
                 for x in myResutl:
                     id+=1
-                my_cursor.execute("update add_student set Dep=%s,course=%s,Year=%s,Semester=%s,Name=%s,class=%s,roll_no=%s,Gender=%s,Dob=%s,email=%s,phone=%s,address=%s,Teacher=%s,photoSample=%s where Student_Id=%s",(
+                my_cursor.execute("update add_student set Department=%s,course=%s,Year=%s,Semester=%s,Name=%s,div=%s,roll_no=%s,Gender=%s,Dob=%s,email=%s,phone=%s,address=%s,Teacher=%s,photoSample=%s where Student_Id=%s",(
                             self.var_dep.get(),
                             self.var_course.get(),
                             self.var_year.get(),
                             self.var_semester.get(),
                             
                             self.var_std_name.get()==sname,
-                            self.var_class.get(),
+                            self.var_div.get(),
                             self.var_roll.get()==sroll,
                             self.var_gender.get(),
                             self.var_dob.get(),
                             self.var_email.get(),
-                            self.var_phone.get(),
+                            self.var_mob.get(),
                             self.var_address.get(),
                             self.var_teacher.get(),
-                            self.var_radio.get(),
+                            self.var_radio1.get(),
                             self.var_std_id.get()==id+1
 
                         ))

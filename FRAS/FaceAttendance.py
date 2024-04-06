@@ -30,7 +30,7 @@ class facerecognitionsystem:
         self.FR_wind.geometry("1368x768+0+0")
         self.FR_wind.title("Mark Attendance")
 
-        img=Image.open(r"Images_GUI\bg2.jpg")
+        img=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/bg2.jpg")
         img=img.resize((1368,768),Image.ANTIALIAS)
         self.photoimg=ImageTk.PhotoImage(img)
         bck_lbl=Label(self.FR_wind,image=self.photoimg)
@@ -41,7 +41,7 @@ class facerecognitionsystem:
         # bck_lbl=Label(self.FR_wind,text="Hellp")
         # bck_lbl.place(x=0,y=0,width=1300, height=700)
         #startMarking
-        btnImg2=Image.open(r"Images_GUI\f_det.jpg")
+        btnImg2=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/f_det.jpg")
         btnImg2=btnImg2.resize((180,180),Image.ANTIALIAS)
         self.photoimg2=ImageTk.PhotoImage(btnImg2)
         b1=Button(bck_lbl,image=self.photoimg2,cursor="hand2",command=self.facerecognize)
@@ -51,7 +51,7 @@ class facerecognitionsystem:
         std_b1_1.place(x=485,y=430,width=180,height=45)
         
         
-        std_img_btn1=Image.open(r"Images_GUI\save-icon.png")
+        std_img_btn1=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/save-icon.png")
         std_img_btn1=std_img_btn1.resize((180,180),Image.ANTIALIAS)
         self.std_img2=ImageTk.PhotoImage(std_img_btn1)
 
@@ -127,14 +127,14 @@ class facerecognitionsystem:
             ws=wb.active
             sheets = wb.sheetnames
             mont=str(today.month)
-            if mont=="9":
+            if mont=="4":
                 ws = wb[sheets[0]]
-            elif mont=="10":
+            elif mont=="5":
                 ws = wb[sheets[1]]
                 print(ws)
-            elif mont=="11":
+            elif mont=="6":
                 ws = wb[sheets[2]]
-            elif mont=="12":
+            elif mont=="7":
                 ws = wb[sheets[3]]
 
             dateindex=0
@@ -165,7 +165,7 @@ class facerecognitionsystem:
                             c1 = ws.cell(row, column)
                             c1.value = "P" 
             
-            wb.save("C:/Users/AMMAR MEER/Desktop/FRAS/Attendance/sheet_"+sub+".xlsx")
+            wb.save("/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Attendance/sheet_"+sub+".xlsx")
             messagebox.showinfo("Saved","Attendance Successfully saved!")
         else:
             messagebox.showerror("Error","Please Select the subject first!")

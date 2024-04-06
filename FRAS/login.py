@@ -91,7 +91,7 @@ class Login:
             # messagebox.showerror("Error","Please Check Username or Password !")
             conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
             mycursor = conn.cursor()
-            mycursor.execute("select * from regteach where email=%s and pwd=%s",(
+            mycursor.execute("select * from regteacher where email=%s and pwd=%s",(
                 self.txtuser.get(),
                 self.txtpwd.get()
             ))

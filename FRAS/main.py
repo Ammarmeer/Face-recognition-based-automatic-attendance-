@@ -1,7 +1,7 @@
 from tkinter import*
 from tkinter import ttk
 from PIL import Image,ImageTk
-from StudentDetails import student_details
+
 from train import Train
 from FaceAttendance import facerecognitionsystem
 from attendance import Attendance
@@ -9,7 +9,7 @@ from developer import Developer
 import os
 from tkinter import filedialog as fd
 from helpsupport import Helpsupport
-
+from student import Student
 class Face_Recognition_System:
     def __init__(self,root):
         self.root=root
@@ -18,7 +18,7 @@ class Face_Recognition_System:
 
 # This part is image labels setting start 
         # first header image  
-        img=Image.open(r"Images_GUI\banner.jpg")
+        img=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/banner.jpg")
         img=img.resize((1366,130),Image.ANTIALIAS)
         self.photoimg=ImageTk.PhotoImage(img)
 
@@ -27,7 +27,7 @@ class Face_Recognition_System:
         f_lb1.place(x=0,y=0,width=1366,height=130)
 
         # backgorund image 
-        bg1=Image.open(r"Images_GUI\bg3.jpg")
+        bg1=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/bg3.jpg")
         bg1=bg1.resize((1366,768),Image.ANTIALIAS)
         self.photobg1=ImageTk.PhotoImage(bg1)
 
@@ -43,7 +43,7 @@ class Face_Recognition_System:
         # Create buttons below the section 
         # ------------------------------------------------------------------------------------------------------------------- 
         # student button 1
-        std_img_btn=Image.open(r"Images_GUI\std1.jpg")
+        std_img_btn=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/std1.jpg")
         std_img_btn=std_img_btn.resize((180,180),Image.ANTIALIAS)
         self.std_img1=ImageTk.PhotoImage(std_img_btn)
 
@@ -54,7 +54,7 @@ class Face_Recognition_System:
         std_b1_1.place(x=150,y=380,width=180,height=45)
 
         # Detect Face  button 2
-        det_img_btn=Image.open(r"Images_GUI\det1.jpg")
+        det_img_btn=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/det1.jpg")
         det_img_btn=det_img_btn.resize((180,180),Image.ANTIALIAS)
         self.det_img1=ImageTk.PhotoImage(det_img_btn)
 
@@ -65,7 +65,7 @@ class Face_Recognition_System:
         det_b1_1.place(x=360,y=380,width=180,height=45)
 
          # Attendance System  button 3
-        att_img_btn=Image.open(r"Images_GUI\att.jpg")
+        att_img_btn=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/att.jpg")
         att_img_btn=att_img_btn.resize((180,180),Image.ANTIALIAS)
         self.att_img1=ImageTk.PhotoImage(att_img_btn)
 
@@ -112,7 +112,7 @@ class Face_Recognition_System:
         # pho_b1_1.place(x=480,y=510,width=180,height=45)
 
         # Developers   button 7
-        dev_img_btn=Image.open(r"Images_GUI\dev.jpg")
+        dev_img_btn=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/dev.jpg")
         dev_img_btn=dev_img_btn.resize((180,180),Image.ANTIALIAS)
         self.dev_img1=ImageTk.PhotoImage(dev_img_btn)
 
@@ -123,7 +123,7 @@ class Face_Recognition_System:
         dev_b1_1.place(x=570,y=380,width=180,height=45)
 
         # exit   button 8
-        exi_img_btn=Image.open(r"Images_GUI\exi.jpg")
+        exi_img_btn=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/exi.jpg")
         exi_img_btn=exi_img_btn.resize((180,180),Image.ANTIALIAS)
         self.exi_img1=ImageTk.PhotoImage(exi_img_btn)
 
@@ -141,7 +141,7 @@ class Face_Recognition_System:
         os.startfile("Attendance")
     def student_pannels(self):
         self.new_window=Toplevel(self.root)
-        self.app=student_details(self.new_window)
+        self.app=Student(self.new_window)
 
     def train_pannels(self):
         self.new_window=Toplevel(self.root)

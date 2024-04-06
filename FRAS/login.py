@@ -4,8 +4,6 @@ from PIL import Image,ImageTk
 from tkinter import messagebox
 from register import Register
 import mysql.connector
-from main import Face_Recognition_System
-# --------------------------
 from train import Train
 from student import Student
 from train import Train
@@ -13,6 +11,7 @@ from FaceAttendance import face_recognition
 from attendance import Attendance
 from developer import Developer
 from helpsupport import Helpsupport
+from main import Face_Recognition_System
 import os
 import time
 
@@ -27,7 +26,7 @@ class Login:
         self.var_sa=StringVar()
         self.var_pwd=StringVar()
 
-        self.bg=ImageTk.PhotoImage(file=r"Images_GUI\loginBg1.jpg")
+        self.bg=ImageTk.PhotoImage(file=r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/loginBg1.jpg")
         
         lb1_bg=Label(self.root,image=self.bg)
         lb1_bg.place(x=0,y=0, relwidth=1,relheight=1)
@@ -35,7 +34,7 @@ class Login:
         frame1= Frame(self.root,bg="#002B53")
         frame1.place(x=520,y=170,width=340,height=450)
 
-        img1=Image.open(r"Images_GUI\log1.png")
+        img1=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/log1.png")
         img1=img1.resize((100,100),Image.ANTIALIAS)
         self.photoimage1=ImageTk.PhotoImage(img1)
         lb1img1 = Label(image=self.photoimage1,bg="#002B53")
@@ -90,7 +89,7 @@ class Login:
             messagebox.showinfo("Please write your email and password")
         else:
             # messagebox.showerror("Error","Please Check Username or Password !")
-            conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+            conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
             mycursor = conn.cursor()
             mycursor.execute("select * from regteach where email=%s and pwd=%s",(
                 self.txtuser.get(),
@@ -121,7 +120,7 @@ class Login:
         elif(self.var_pwd.get()==""):
             messagebox.showerror("Error","Please Enter the New Password!",parent=self.root2)
         else:
-            conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+            conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
             mycursor = conn.cursor()
             query=("select * from regteach where email=%s and ssq=%s and sa=%s")
             value=(self.txtuser.get(),self.var_ssq.get(),self.var_sa.get())
@@ -146,7 +145,7 @@ class Login:
         if self.txtuser.get()=="":
             messagebox.showerror("Error","Please Enter the Email ID to reset Password!")
         else:
-            conn = mysql.connector.connect(host="localhost",username="root",password="SuperPC@467",database="face_recognition")
+            conn = mysql.connector.connect(host="localhost",username="root",password="Admin123",database="face")
             mycursor = conn.cursor()
             query=("select * from regteach where email=%s")
             value=(self.txtuser.get(),)

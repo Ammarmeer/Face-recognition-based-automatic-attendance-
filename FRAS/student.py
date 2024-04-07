@@ -505,31 +505,29 @@ class Student:
                 sname=self.var_std_name.get()
                 for x in myResutl:
                     id+=1
-                my_cursor.execute("update add_student set Department=%s,course=%s,Year=%s,Semester=%s,Name=%s,div=%s,roll_no=%s,Gender=%s,Dob=%s,email=%s,phone=%s,address=%s,Teacher=%s,photoSample=%s where Student_Id=%s",(
-                            self.var_dep.get(),
-                            self.var_course.get(),
-                            self.var_year.get(),
-                            self.var_semester.get(),
-                            
-                            self.var_std_name.get()==sname,
-                            self.var_div.get(),
-                            self.var_roll.get()==sroll,
-                            self.var_gender.get(),
-                            self.var_dob.get(),
-                            self.var_email.get(),
-                            self.var_mob.get(),
-                            self.var_address.get(),
-                            self.var_teacher.get(),
-                            self.var_radio1.get(),
-                            self.var_std_id.get()==id+1
-
-                        ))
+                my_cursor.execute("update add_student set Name=%s,Department=%s,Course=%s,Year=%s,Semester=%s,Division=%s,Gender=%s,DOB=%s,Mobile_No=%s,Address=%s,Roll_No=%s,Email=%s,Teacher_Name=%s,PhotoSample=%s where Student_ID=%s",( 
+                    self.var_std_name.get(),
+                    self.var_dep.get(),
+                    self.var_course.get(),
+                    self.var_year.get(),
+                    self.var_semester.get(),
+                    self.var_div.get(),
+                    self.var_gender.get(),
+                    self.var_dob.get(),
+                    self.var_mob.get(),
+                    self.var_address.get(),
+                    self.var_roll.get(),
+                    self.var_email.get(),
+                    self.var_teacher.get(),
+                    self.var_radio1.get(),
+                    self.var_std_id.get()   
+                    ))
                 conn.commit()
                 self.fetch_data()
-                self.reset_func()
+                self.reset_data()
                 conn.close()
 
-                messagebox.showinfo(sroll,parent=s_wind)
+                # messagebox.showinfo(sroll,parent=Student)
 
                 #========== Load data on frontal face from opencv
                 haar=pkg_resources.resource_filename('cv2','data/haarcascade_frontalface_default.xml')
@@ -552,7 +550,7 @@ class Student:
                         img_id+=1
                         face=cv2.resize(face_cropped(frame_my),(500,500))
                         face=cv2.cvtColor(face,cv2.COLOR_BGR2GRAY)
-                        file_name_path="ImagesOfFaces/"+str(sroll)+"."+str(sname)+".jpg"
+                        file_name_path="ImagesOfFaces/"+str(sname)+".jpg"
                         cv2.imwrite(file_name_path,face)
                         cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_SCRIPT_COMPLEX,2,(0,255,29),2)
                         cv2.imshow("Croped Face",face)

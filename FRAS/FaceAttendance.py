@@ -1,10 +1,7 @@
-from sys import path
-import csv
 from tkinter import*
 from tkinter import ttk
 from PIL import Image,ImageTk
 import os
-import mysql.connector
 import cv2
 from tkinter import filedialog as fd
 import numpy as np
@@ -16,11 +13,9 @@ from datetime import date
 import datetime
 from datetime import datetime
 from tkinter import messagebox
-import time
-import pkg_resources
 import face_recognition
 #haar=pkg_resources.resource_filename('cv2','data/haarcascade_frontalface_default.xml')
-directory="C:\\Users\\AMMAR MEER\\Desktop\\FRAS\\"
+directory="/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/"
 # from PIL import ImageGrab
 
 class facerecognitionsystem:
@@ -31,7 +26,7 @@ class facerecognitionsystem:
         self.FR_wind.title("Mark Attendance")
 
         img=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/bg2.jpg")
-        img=img.resize((1368,768),Image.ANTIALIAS)
+        img=img.resize((1368,768),Image.LANCZOS)
         self.photoimg=ImageTk.PhotoImage(img)
         bck_lbl=Label(self.FR_wind,image=self.photoimg)
         bck_lbl.place(x=0,y=0,width=1368, height=768)
@@ -42,7 +37,7 @@ class facerecognitionsystem:
         # bck_lbl.place(x=0,y=0,width=1300, height=700)
         #startMarking
         btnImg2=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/f_det.jpg")
-        btnImg2=btnImg2.resize((180,180),Image.ANTIALIAS)
+        btnImg2=btnImg2.resize((180,180),Image.LANCZOS)
         self.photoimg2=ImageTk.PhotoImage(btnImg2)
         b1=Button(bck_lbl,image=self.photoimg2,cursor="hand2",command=self.facerecognize)
         b1.place(x=485,y=260,width=180,height=180)
@@ -52,7 +47,7 @@ class facerecognitionsystem:
         
         
         std_img_btn1=Image.open(r"/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Images_GUI/save-icon.png")
-        std_img_btn1=std_img_btn1.resize((180,180),Image.ANTIALIAS)
+        std_img_btn1=std_img_btn1.resize((180,180),Image.LANCZOS)
         self.std_img2=ImageTk.PhotoImage(std_img_btn1)
 
         std_b2 = Button(bck_lbl,image=self.std_img2,cursor="hand2",command=self.txttolist)
@@ -81,7 +76,9 @@ class facerecognitionsystem:
         txt="raw_"+today+".txt"
         filepath = directory
         file=filepath+txt
-        with open(filepath+"raw_"+today+".txt", "a+",newline="\n") as fp:
+        print(file)
+        try:
+            with open(filepath+"raw_"+today+".txt", "a+",newline="\n") as fp:
                 myDatalist=fp.readlines()
                 name_list=[]
                 for line in myDatalist:
@@ -93,6 +90,9 @@ class facerecognitionsystem:
                     d1=now.strftime("%d/%m/%Y")
                     dtString=now.strftime("%H:%M:%S")
                     fp.writelines(n+ '\n')
+        except Exception as ex:
+                print(ex)
+                
 
         def remove_repeated(file):
             openFile = open(file, "r") 
@@ -165,8 +165,8 @@ class facerecognitionsystem:
                             c1 = ws.cell(row, column)
                             c1.value = "P" 
             
-            wb.save("/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Attendance/sheet_"+sub+".xlsx")
-            messagebox.showinfo("Saved","Attendance Successfully saved!")
+            if (wb.save("/Users/ammarmehmood/Desktop/machine-learning/Face-recognition-based-attendance-system/Face-recognition-based-automatic-attendance-/FRAS/Attendance/sheet_"+sub+".xlsx")):
+                messagebox.showinfo("Saved","Attendance Successfully saved!")
         else:
             messagebox.showerror("Error","Please Select the subject first!")
 
@@ -234,6 +234,7 @@ class facerecognitionsystem:
                     if faceDis[matchIndex]< 0.50:
                         name = classNames[matchIndex]
                         self.save_raw_Attendance(name)
+                        print('saved')
 
                     else: name = 'Unknown'
                     #print(name)
